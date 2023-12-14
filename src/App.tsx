@@ -1,24 +1,21 @@
-
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {
-  AppBar,
-  Toolbar,
-  CssBaseline,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Layouts from "./components/Layouts/Layouts";
 
-
-import CollegeView from './pages/CollegeView';
-import NavBar from './components/NavBar';
+const queryClient = new QueryClient();
 
 function App() {
-      return (
-        <CollegeView />
-      );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Layouts />
+      </Router>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
