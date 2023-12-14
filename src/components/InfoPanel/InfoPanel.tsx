@@ -21,7 +21,7 @@ const InfoPanel: React.FC = () => {
   };
 
   const togglePanel = () => {
-    dispatch(setInfoPanelVisible());
+    dispatch(setInfoPanelVisible(!infoPanel?.infoPanelVisible));
   };
 
   console.log("infoPanel: " + infoPanel);

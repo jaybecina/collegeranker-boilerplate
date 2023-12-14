@@ -12,7 +12,8 @@ import { IDataSourceItem } from "../components/Table/interfaces/interfaces";
 import { generateRandomGrade } from "../helpers/generateRandomGrade";
 
 function CollegeView() {
-  const [showPanel, setShowPanel] = useState(true);
+  const [currentCollegeName, setCurrentCollegeName] = useState<string>("");
+
   const dispatch: Dispatch<any> = useDispatch();
 
   let paramUrl: string;
@@ -31,6 +32,7 @@ function CollegeView() {
     if (data?.data?.length > 0) {
       // get only specific number of data
       const selectData = data?.data?.slice(0, 4);
+      setCurrentCollegeName(colleges?.selectedCollege); // for compare of current vs new college name
       dispatch(setColleges(selectData));
     }
 
@@ -59,6 +61,20 @@ function CollegeView() {
 
   const [dataSource, setDataSource] =
     useState<IDataSourceItem[]>(initialDataSource);
+
+  const handleRefresh = () => {
+    const refreshedData = dataSource?.map((item) => ({
+      ...item,
+      grade: generateRandomGrade(),
+    }));
+    setDataSource(refreshedData);
+  };
+
+  useEffect(() => {
+    if (colleges?.selectedCollege !== currentCollegeName) {
+      handleRefresh();
+    }
+  }, [colleges?.selectedCollege]);
 
   if (isLoading) {
     return <Spinner />;

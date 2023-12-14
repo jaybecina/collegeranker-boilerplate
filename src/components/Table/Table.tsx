@@ -27,14 +27,6 @@ const GradesAndLabelsCard: React.FC<IData> = ({ data, setData }) => {
     (state) => state.colleges
   );
 
-  const handleRefresh = () => {
-    const refreshedData = data?.map((item) => ({
-      ...item,
-      grade: generateRandomGrade(),
-    }));
-    setData(refreshedData);
-  };
-
   useEffect(() => {
     if (colleges?.selectedCollege) {
     }

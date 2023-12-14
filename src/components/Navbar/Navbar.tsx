@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
   const toggleActive = (name: string) => {
     setNavActive(name);
     dispatch(selectCollege(name));
-    dispatch(setInfoPanelVisible());
+    dispatch(setInfoPanelVisible(true));
   };
 
   console.log("infoPanel navbar: ", infoPanel?.infoPanelVisible);

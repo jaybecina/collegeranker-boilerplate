@@ -13,8 +13,8 @@ const infoPanelSlice = createSlice({
       state.infoPanelVisible = false;
     },
     // setter
-    setInfoPanelVisible: (state: IInfoPanelProps) => {
-      state.infoPanelVisible = !state.infoPanelVisible;
+    setInfoPanelVisible: (state: IInfoPanelProps, action: IActionSlice) => {
+      state.infoPanelVisible = action.payload;
     },
   },
 });
